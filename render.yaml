@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: interview-backend
+    runtime: python
+    plan: free            # change to "starter" ($7/mo) for no cold-start + more RAM
+    buildCommand: "bash build.sh"
+    startCommand: "gunicorn backend.wsgi:application --bind 0.0.0.0:$PORT"
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: DEBUG
+        value: "False"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false        # paste Neon/Supabase Postgres URL
+      - key: REDIS_URL
+        sync: false        # Upstash redis URL (for celery); optional if no worker
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: EXTRA_ALLOWED_HOSTS
+        sync: false        # e.g. yourapp.onrender.com
+      - key: EXTRA_CORS_ORIGINS
+        sync: false        # e.g. https://your-frontend.vercel.app
+
+  # OPTIONAL celery worker — NOT free, needs paid plan. Uncomment if needed:
+  # - type: worker
+  #   name: interview-worker
+  #   runtime: python
+  #   plan: starter
+  #   buildCommand: "pip install -r requirements.txt"
+  #   startCommand: "celery -A backend worker --loglevel=info"
+  #   envVars:
+  #     - fromGroup: interview-backend

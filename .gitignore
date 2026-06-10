@@ -1,0 +1,41 @@
+# Ignore Python bytecode files
+__pycache__/
+*.py[cod]
+*$py.class
+__pycache__/
+*.pyc
+
+# Ignore migrations files in every app (but keep __init__.py)
+*/migrations/*
+!*/migrations/__init__.py
+
+# Ignore virtual environment
+venv/
+env/
+.venv/
+
+# Ignore .env file containing secrets
+.env
+
+# Ignore media files (user-uploaded content)
+media/
+
+# Ignore SQLite database file (if you're using SQLite)
+db.sqlite3
+
+# Ignore log files
+*.log
+
+# Ignore coverage reports
+.coverage
+
+# Ignore PyCharm project files (if using PyCharm)
+.idea/
+
+# Ignore VS Code settings (if using VS Code)
+.vscode/
+
+# Ignore build directories (for certain deployment processes)
+build/
+dist/
+*.egg-info/
