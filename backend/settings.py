@@ -38,10 +38,8 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '.railway.app',
-    'healthcheck.railway.app',
-    'https://interview-backend-production-bdf0.up.railway.app',
-    "https://talent-scout-flax.vercel.app",
     '.onrender.com',
+    'smartly-hire-backend.onrender.com',
 ]
 # Extra hosts via env (comma-separated), e.g. your render + vercel domains
 ALLOWED_HOSTS += [h.strip() for h in os.getenv("EXTRA_ALLOWED_HOSTS", "").split(",") if h.strip()]
@@ -120,8 +118,9 @@ AUTHENTICATION_BACKENDS = (
 )
 # CORS settings
 CORS_ALLOWED_ORIGINS = [
+    "https://smartly-hire-frontend.vercel.app",
     "https://talent-scout-flax.vercel.app",
-    "http://localhost:5173"
+    "http://localhost:5173",
 ]
 # Extra CORS origins via env (comma-separated full URLs)
 CORS_ALLOWED_ORIGINS += [o.strip() for o in os.getenv("EXTRA_CORS_ORIGINS", "").split(",") if o.strip()]
@@ -386,11 +385,11 @@ CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SECURE = False    # Set to True in production
 
 from datetime import timedelta
-CSRF_TRUSTED_ORIGINS = ['https://interview-backend-production-bdf0.up.railway.app', "https://talent-scout-flax.vercel.app","http://localhost:5173"]  
-CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST = [
-    'https://talent-scout-flax.vercel.app'
-    'http://localhost:5173',
+CSRF_TRUSTED_ORIGINS = [
+    "https://smartly-hire-backend.onrender.com",
+    "https://smartly-hire-frontend.vercel.app",
+    "https://talent-scout-flax.vercel.app",
+    "http://localhost:5173",
 ]
 
 # Your other imports and settings...
